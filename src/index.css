@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #f8fafc; /* slate-50 */
+    --surface: #ffffff;
+    --border: #e2e8f0; /* slate-200 */
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+  }
+
+  .dark {
+    --background: #09090b; /* zinc-950 - Preto profundo profissional */
+    --surface: #18181b; /* zinc-900 */
+    --border: #27272a; /* zinc-800 */
+    --text-main: #fafafa;
+    --text-muted: #a1a1aa;
+  }
+
+  body {
+    @apply bg-[color:var(--background)] text-[color:var(--text-main)] antialiased transition-colors duration-500;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11"; /* Tipografia mais nítida */
+  }
+}
+
+/* Fundo com Padrão de Grade Refinado */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, var(--border) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+/* Glassmorphism Profissional */
+.glass-panel {
+  @apply bg-[color:var(--surface)]/70 backdrop-blur-xl border border-[color:var(--border)] shadow-sm;
+}
