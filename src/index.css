@@ -3,159 +3,101 @@
 @tailwind utilities;
 
 /* ---------------------------------------------------------------------
-   LEAHPAR NOTE — "Console de Qualidade"
-   Sistema de tokens inspirado em mesas de mixagem / racks de estúdio:
-   luz de trabalho durante o dia, painel retroiluminado à noite.
+   LEAHPAR NOTE — identidade alinhada à marca Leahpar Code
+   Fundo claro com gradiente azul suave, tipografia bold, azul como
+   cor de destaque, cards limpos com sombra leve.
 --------------------------------------------------------------------- */
 
 :root {
-  --c-bg: #E7E5DC;
-  --c-panel: #F1EFE6;
-  --c-panel-2: #E1DED2;
-  --c-inset: #C9C6B8;
-  --c-line: #B9B6A6;
-  --c-ink: #24261F;
-  --c-sub: #6C6A5C;
-  --shadow-panel: 0 1px 2px rgba(36,38,31,0.06), 0 6px 16px -8px rgba(36,38,31,0.18);
+  --surface: #FFFFFF;
+  --surface-muted: #F3F6FC;
+  --border: #E4E9F3;
+  --ink: #101A33;
+  --sub: #64748B;
+  --brand: #2F6FEE;
+  --brand-strong: #1B4FD6;
+  --bg-a: #EAF1FF;
+  --bg-b: #FFFFFF;
 }
 
 .dark {
-  --c-bg: #1A1B17;
-  --c-panel: #232520;
-  --c-panel-2: #1E1F1B;
-  --c-inset: #101109;
-  --c-line: #34362E;
-  --c-ink: #EDEADF;
-  --c-sub: #9B9A88;
-  --shadow-panel: 0 1px 0 rgba(0,0,0,0.4), 0 10px 24px -12px rgba(0,0,0,0.65);
-}
-
-html {
-  scroll-behavior: smooth;
+  --surface: #121B2E;
+  --surface-muted: #0E1626;
+  --border: #223047;
+  --ink: #EDF2FA;
+  --sub: #8A97AC;
+  --brand: #5B8DFF;
+  --brand-strong: #2F6FEE;
+  --bg-a: #0B1220;
+  --bg-b: #0E1626;
 }
 
 body {
-  background: var(--c-bg);
-  color: var(--c-ink);
+  color: var(--ink);
 }
 
-/* Textura sutil de "chapa" no fundo — quase imperceptível, só quebra o vazio */
-.rack-texture {
-  background-image:
-    repeating-linear-gradient(0deg, rgba(0,0,0,0.025) 0px, rgba(0,0,0,0.025) 1px, transparent 1px, transparent 3px);
+/* Fundo em gradiente suave, igual ao herói do site institucional */
+.app-bg {
+  background: radial-gradient(1200px 600px at 10% -10%, var(--bg-a), var(--bg-b) 60%);
 }
 
-/* Painel padrão (substitui os cards brancos genéricos) */
+/* Card padrão (substitui os antigos "painéis" de instrumento) */
 .panel {
-  background: var(--c-panel);
-  border: 1px solid var(--c-line);
-  border-radius: 10px;
-  box-shadow: var(--shadow-panel);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(16,26,51,0.04), 0 8px 24px -12px rgba(16,26,51,0.12);
 }
 
-/* Tela recuada tipo LCD/display de instrumento */
+/* Caixa de campo / leitura discreta */
 .screen {
-  background: var(--c-inset);
-  border: 1px solid var(--c-line);
-  border-radius: 6px;
-  box-shadow: inset 0 2px 6px rgba(0,0,0,0.28), inset 0 0 0 1px rgba(0,0,0,0.12);
-}
-.dark .screen {
-  box-shadow: inset 0 2px 8px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(0,0,0,0.5);
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  color: var(--ink);
 }
 
-/* Rótulo estilo serigrafia em painel de equipamento */
+/* Rótulo pequeno acima de números/seções */
 .plate-label {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--c-sub);
+  color: var(--sub);
 }
 
-/* Indicador LED */
+/* Indicador de status (dot) */
 .led {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
   flex-shrink: 0;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
 }
 .led-on {
-  box-shadow: 0 0 6px 1px currentColor, 0 0 0 1px rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 4px currentColor, 0 0 0 4px transparent;
+  box-shadow: 0 0 8px 1px currentColor;
 }
-
-/* Régua de marcações (tick marks) usada em faders e medidores */
-.tick-rule {
-  background-image: repeating-linear-gradient(
-    90deg,
-    var(--c-line) 0px,
-    var(--c-line) 1px,
-    transparent 1px,
-    transparent 10%
-  );
-}
-
 @keyframes led-pulse {
   0%, 100% { opacity: 1; }
-  50% { opacity: 0.35; }
+  50% { opacity: 0.4; }
 }
-.animate-led-pulse { animation: led-pulse 1.6s ease-in-out infinite; }
+.animate-led-pulse { animation: led-pulse 1.8s ease-in-out infinite; }
 
 @keyframes rise-in {
   0% { opacity: 0; transform: translateY(10px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 .animate-rise { animation: rise-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; }
-.delay-1 { animation-delay: 60ms; }
-.delay-2 { animation-delay: 120ms; }
-.delay-3 { animation-delay: 180ms; }
-.delay-4 { animation-delay: 240ms; }
-.delay-5 { animation-delay: 300ms; }
 
-/* Slider (fader) customizado */
-input[type="range"].fader {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-}
-input[type="range"].fader::-webkit-slider-runnable-track {
-  height: 6px;
-  border-radius: 3px;
-  background: var(--c-inset);
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
-}
-input[type="range"].fader::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  margin-top: -7px;
-  width: 18px;
-  height: 20px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #575A4E, #34362C);
-  border: 1px solid rgba(0,0,0,0.4);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
-  cursor: pointer;
-}
-input[type="range"].fader::-moz-range-track {
-  height: 6px;
-  border-radius: 3px;
-  background: var(--c-inset);
-}
-input[type="range"].fader::-moz-range-thumb {
-  width: 18px;
-  height: 20px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #575A4E, #34362C);
-  border: 1px solid rgba(0,0,0,0.4);
-  cursor: pointer;
+input[type="range"] {
+  accent-color: var(--brand);
 }
 
 ::selection {
-  background: rgba(79,184,176,0.25);
-  color: var(--c-ink);
+  background: rgba(47,111,238,0.18);
+  color: var(--ink);
 }
 
-/* Scrollbar discreta */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--c-line); border-radius: 999px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }

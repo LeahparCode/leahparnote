@@ -8,37 +8,19 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Space Grotesk"', 'sans-serif'],
-        sans: ['"IBM Plex Sans"', 'sans-serif'],
-        mono: ['"IBM Plex Mono"', 'monospace'],
+        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       colors: {
-        console: {
-          bg: 'var(--c-bg)',
-          panel: 'var(--c-panel)',
-          panel2: 'var(--c-panel-2)',
-          inset: 'var(--c-inset)',
-          line: 'var(--c-line)',
-          ink: 'var(--c-ink)',
-          sub: 'var(--c-sub)',
+        surface: 'var(--surface)',
+        surfaceMuted: 'var(--surface-muted)',
+        line: 'var(--border)',
+        ink: 'var(--ink)',
+        sub: 'var(--sub)',
+        brand: {
+          DEFAULT: 'var(--brand)',
+          strong: 'var(--brand-strong)',
         },
-        signal: {
-          teal: '#4FB8B0',
-          tealDim: '#2E7A75',
-        },
-        meter: {
-          green: '#7BC17A',
-          amber: '#E3A73E',
-          red: '#D96A56',
-        },
-      },
-      boxShadow: {
-        panel: 'var(--shadow-panel)',
-        insetscreen: 'inset 0 2px 6px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(0,0,0,0.35)',
-      },
-      borderRadius: {
-        panel: '10px',
-        module: '6px',
       },
     },
   },
