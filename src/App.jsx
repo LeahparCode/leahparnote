@@ -3,7 +3,7 @@ import {
   LayoutDashboard, ClipboardList, History, LogOut, Search, TrendingUp, Users, 
   Star, Calendar, MessageSquare, Gauge as GaugeIcon, Plus, Download, AlertCircle, 
   UserPlus, Shield, Lightbulb, AlertTriangle, Loader2, Trash2, Moon, Sun, 
-  Mic, Paperclip, X, Headphones, Edit3, Save, Printer, BellRing
+  Mic, Paperclip, X, Headphones, Edit3, Save, Printer, BellRing, Code2
 } from 'lucide-react';
 
 // =========================================================================
@@ -147,6 +147,25 @@ const ConsoleToast = ({ toast }) => {
     </div>
   );
 };
+
+// Crédito de rodapé com mini logo e link para o portfólio
+const BrandCredit = () => (
+  <p className="plate-label flex items-center justify-center gap-1.5 flex-wrap">
+    Desenvolvido por
+    <a
+      href="https://leahparcode.onrender.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1.5 text-brand font-semibold hover:text-brand-strong transition-colors"
+    >
+      <span className="w-4 h-4 rounded-[5px] bg-gradient-to-br from-brand to-brand-strong flex items-center justify-center shrink-0">
+        <Code2 className="w-2.5 h-2.5 text-white" strokeWidth={2.5} />
+      </span>
+      Leahpar Code
+    </a>
+    &copy; 2026
+  </p>
+);
 
 // --- APP PRINCIPAL ---
 export default function App() {
@@ -483,9 +502,7 @@ export default function App() {
         </div>
         
         <div className="mt-8 text-center animate-subtle-zoom delay-200">
-          <p className="plate-label">
-            Desenvolvido por <span className="text-brand font-semibold">Leahpar Code</span> &copy; 2026
-          </p>
+          <BrandCredit />
         </div>
       </div>
     </div>
@@ -1456,9 +1473,7 @@ export default function App() {
         </div>
 
         <footer className="mt-auto py-6 border-t border-line bg-surface/50 backdrop-blur-sm text-center w-full z-10 pb-20 md:pb-6">
-          <p className="plate-label">
-            Desenvolvido por <span className="text-brand font-semibold">Leahpar Code</span> &copy; 2026
-          </p>
+          <BrandCredit />
         </footer>
       </main>
 
