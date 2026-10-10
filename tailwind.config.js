@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
   content: [
     "./index.html",
@@ -8,19 +10,26 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['"Plus Jakarta Sans"', 'sans-serif'],
-        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        display: ['"Instrument Serif"', 'Georgia', 'serif'],
+        sans: ['Geist', 'system-ui', 'sans-serif'],
+        mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
       },
       colors: {
-        surface: 'var(--surface)',
-        surfaceMuted: 'var(--surface-muted)',
-        line: 'var(--border)',
-        ink: 'var(--ink)',
-        sub: 'var(--sub)',
+        paper: token('paper'),
+        surface: token('surface'),
+        surfaceMuted: token('surface-muted'),
+        line: token('line'),
+        ink: token('ink'),
+        sub: token('sub'),
+        rail: token('rail'),
+        railInk: token('rail-ink'),
         brand: {
-          DEFAULT: 'var(--brand)',
-          strong: 'var(--brand-strong)',
+          DEFAULT: token('signal'),
+          strong: token('signal-strong'),
         },
+        good: token('good'),
+        warn: token('warn'),
+        bad: token('bad'),
       },
     },
   },
