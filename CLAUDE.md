@@ -6,6 +6,8 @@ App de monitoria de qualidade em React + Vite + Tailwind. Os dados vêm de um Go
 
 - Toda alteração no código deve ir para um pull request: crie um branch, faça commit e push, e abra o PR contra `main`. Não faça commit direto no `main`.
 - Antes de abrir o PR, rode `npm run build` e confira que compila.
+- Depois de abrir o PR, aguarde a revisão automática (Codex) terminar, trate o que ela apontar e faça o merge do PR no `main`.
+- Toda a interface é em português do Brasil (pt-BR): use "usuário", "senha", "equipe", "arquivo", "salvar" etc., nunca termos de Portugal.
 
 ## Identidade visual
 
