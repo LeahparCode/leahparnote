@@ -471,13 +471,13 @@ export default function App() {
       const userByEmail = normalizedUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
       
       if (!userByEmail) {
-        showToast('Utilizador inexistente! Verifique o e-mail informado.', 'error');
+        showToast('Usuário inexistente! Verifique o e-mail informado.', 'error');
         setIsLoading(false);
         return;
       }
 
       if (String(userByEmail.password) !== String(password)) {
-        showToast('Palavra-passe incorreta! Tente novamente.', 'error');
+        showToast('Senha incorreta! Tente novamente.', 'error');
         setIsLoading(false);
         return;
       }
@@ -508,7 +508,7 @@ export default function App() {
       showToast(`Bem-vindo(a), ${foundUser.name}!`);
     } catch (err) {
       console.error(err);
-      showToast('Erro ao ligar à base de dados. Verifique o link da API.', 'error');
+      showToast('Erro ao conectar ao banco de dados. Verifique o link da API.', 'error');
     } finally {
       setIsLoading(false);
     }
@@ -537,9 +537,9 @@ export default function App() {
       let recommendation = null;
       if (avgScore < 80 && totalEvals > 0) {
         const lowest = Math.min(avgComm, avgRes, avgEmp);
-        if (lowest === avgComm) recommendation = "A sua nota de Comunicação está abaixo da média. Tente usar um tom de voz mais acolhedor.";
-        else if (lowest === avgRes) recommendation = "Foque na Resolução no Primeiro Contacto. Garanta que o cliente não tem mais dúvidas.";
-        else recommendation = "Pratique mais a Escuta Ativa e Empatia. Mostre ao cliente que compreende a frustração dele.";
+        if (lowest === avgComm) recommendation = "Sua nota de Comunicação está abaixo da média. Tente usar um tom de voz mais acolhedor.";
+        else if (lowest === avgRes) recommendation = "Foque na Resolução no Primeiro Contato. Garanta que o cliente não tem mais dúvidas.";
+        else recommendation = "Pratique mais a Escuta Ativa e Empatia. Mostre ao cliente que entende a frustração dele.";
       }
       return { totalEvals, avgScore, avgComm, avgRes, avgEmp, recommendation };
     } 
@@ -622,7 +622,7 @@ export default function App() {
             Cada chamada<br />conta uma <em className="text-brand">história.</em>
           </h1>
           <p className="mt-6 max-w-md text-railInk/60 text-[15px] leading-relaxed animate-rise d3">
-            Avalie atendimentos, anexe gravações e transforme feedback em evolução real da equipa — num só lugar.
+            Avalie atendimentos, anexe gravações e transforme feedback em evolução real da equipe — em um só lugar.
           </p>
           <EqBars count={56} className="h-24 mt-12 animate-rise d4" barClass="bg-railInk/25 [&:nth-child(7n+3)]:bg-brand" />
         </div>
@@ -631,7 +631,7 @@ export default function App() {
           <div className="marquee flex w-max gap-10 font-mono text-xs text-railInk/40 whitespace-nowrap">
             {[0, 1].map(k => (
               <div key={k} className="flex gap-10">
-                {['Comunicação', 'Resolução', 'Empatia', 'Laudos em PDF', 'Gravações anexadas', 'Ranking da equipa', 'Planos de desenvolvimento'].map(t => (
+                {['Comunicação', 'Resolução', 'Empatia', 'Laudos em PDF', 'Gravações anexadas', 'Ranking da equipe', 'Planos de desenvolvimento'].map(t => (
                   <span key={t} className="flex items-center gap-10">{t}<span className="text-brand">✦</span></span>
                 ))}
               </div>
@@ -656,7 +656,7 @@ export default function App() {
             <h2 className="font-display text-5xl leading-none tracking-tight mt-3 animate-rise d1">
               Bem-vindo <em>de volta</em>
             </h2>
-            <p className="text-sub mt-3 text-[15px] animate-rise d2">Entre com as credenciais registadas na planilha da equipa.</p>
+            <p className="text-sub mt-3 text-[15px] animate-rise d2">Entre com as credenciais cadastradas na planilha da equipe.</p>
 
             <form className="space-y-5 mt-10 animate-rise d3" onSubmit={handleLogin}>
               <div>
@@ -665,20 +665,20 @@ export default function App() {
               </div>
 
               <div>
-                <label className="field-label" htmlFor="login-password">Palavra-passe</label>
+                <label className="field-label" htmlFor="login-password">Senha</label>
                 <input id="login-password" name="password" type="password" required autoComplete="current-password" placeholder="••••••••" className="field" />
               </div>
 
               <button type="submit" disabled={isLoading} className="btn btn-primary w-full h-12 mt-2">
                 {isLoading
-                  ? <><Loader2 className="w-4 h-4 animate-spin" /> A ligar à nuvem…</>
+                  ? <><Loader2 className="w-4 h-4 animate-spin" /> Conectando à nuvem…</>
                   : <>Entrar no sistema <ArrowRight className="arrow w-4 h-4" /></>}
               </button>
             </form>
 
             <div className="mt-8 flex items-center gap-2 text-xs text-sub animate-rise d4">
               <Shield className="w-3.5 h-3.5" />
-              Ligação cifrada · sessão guardada neste dispositivo
+              Conexão criptografada · sessão salva neste dispositivo
             </div>
           </div>
         </div>
@@ -727,7 +727,7 @@ export default function App() {
 
           <div className="panel p-6 lg:p-7 flex flex-col animate-rise d5">
             <span className="idx">05</span>
-            <h3 className="font-display text-[28px] leading-tight mt-1 mb-5">Ranking <em>da equipa</em></h3>
+            <h3 className="font-display text-[28px] leading-tight mt-1 mb-5">Ranking <em>da equipe</em></h3>
             <ol className="flex-1 -mx-2">
               {ranking.map((agent, idx) => (
                 <li key={agent.name} className="group flex items-center gap-4 px-2 py-3 rounded-xl hover:bg-surfaceMuted/70 transition-colors">
@@ -768,7 +768,7 @@ export default function App() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <MeterCard index="01" title="A sua média de qualidade" value={<CountUp value={kpis.avgScore} decimals={1} suffix="%" />} icon={GaugeIcon} subtitle={kpis.totalEvals > 0 ? zoneLabel(kpis.avgScore) : 'sem avaliações ainda'} delayClass="d1" />
+        <MeterCard index="01" title="Sua média de qualidade" value={<CountUp value={kpis.avgScore} decimals={1} suffix="%" />} icon={GaugeIcon} subtitle={kpis.totalEvals > 0 ? zoneLabel(kpis.avgScore) : 'sem avaliações ainda'} delayClass="d1" />
         <MeterCard index="02" title="Avaliações recebidas" value={<CountUp value={kpis.totalEvals} />} icon={ClipboardList} subtitle="no período selecionado" delayClass="d2" />
       </div>
 
@@ -803,7 +803,7 @@ export default function App() {
           </div>
           <div>
             <h3 className="font-display text-3xl leading-tight">Excelente <em>trabalho</em>!</h3>
-            <p className="text-sub text-[15px] mt-1">A sua nota está acima da meta. Continue a manter a alta qualidade nos seus atendimentos.</p>
+            <p className="text-sub text-[15px] mt-1">Sua nota está acima da meta. Continue a manter a alta qualidade nos seus atendimentos.</p>
           </div>
         </div>
       )}
@@ -828,7 +828,7 @@ export default function App() {
       if (!file) return;
       
       if (file.size > 5 * 1024 * 1024) { 
-        showToast("O ficheiro é muito grande. Escolha um áudio até 5MB.", "error");
+        showToast("O arquivo é muito grande. Escolha um áudio até 5MB.", "error");
         e.target.value = null;
         return;
       }
@@ -848,7 +848,7 @@ export default function App() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      if(!formData.agent) return showToast('Cadastre um operador primeiro no menu Gerir Utilizadores!', 'error');
+      if(!formData.agent) return showToast('Cadastre um operador primeiro no menu Gerenciar Usuários!', 'error');
       
       setIsLoading(true);
       const newEval = {
@@ -888,7 +888,7 @@ export default function App() {
         })).sort((a, b) => new Date(b.date) - new Date(a.date));
 
         setEvaluations(formattedEvals);
-        showToast('Avaliação gravada com sucesso!');
+        showToast('Avaliação salva com sucesso!');
         setCurrentView('history');
       } catch (err) {
         showToast('Erro ao salvar avaliação. Tente novamente.', 'error');
@@ -900,7 +900,7 @@ export default function App() {
 
     const criteriaList = [
       { id: 'comm', label: 'Comunicação', hint: 'Clareza, tom de voz e linguagem adequada' },
-      { id: 'res', label: 'Resolução', hint: 'O problema ficou resolvido no primeiro contacto?' },
+      { id: 'res', label: 'Resolução', hint: 'O problema ficou resolvido no primeiro contato?' },
       { id: 'emp', label: 'Empatia', hint: 'Escuta ativa e acolhimento do cliente' },
     ];
 
@@ -949,7 +949,7 @@ export default function App() {
                   <p className="text-xs text-sub mt-0.5">Pronto para enviar ao Drive</p>
                 </div>
                 <EqBars count={10} className="h-6 hidden sm:flex" />
-                <button type="button" onClick={() => { setAudioData(null); setAudioFileName(""); }} className="btn btn-icon is-danger" title="Remover ficheiro">
+                <button type="button" onClick={() => { setAudioData(null); setAudioFileName(""); }} className="btn btn-icon is-danger" title="Remover arquivo">
                   <X className="w-4 h-4" />
                 </button>
               </div>
@@ -981,7 +981,7 @@ export default function App() {
 
         {/* Resumo ao vivo */}
         <aside className="panel p-6 lg:sticky lg:top-32 animate-rise d4 relative">
-          {isLoading && <BusyOverlay title="A gravar no Google Drive…" hint="Pode demorar alguns segundos." />}
+          {isLoading && <BusyOverlay title="Salvando no Google Drive…" hint="Pode demorar alguns segundos." />}
           <div className="flex items-center justify-between">
             <span className="idx">04 — Resultado</span>
             <span className="flex items-center gap-1.5 font-mono text-[11px] text-sub"><span className="w-1.5 h-1.5 rounded-full bg-brand animate-led-pulse" />ao vivo</span>
@@ -1002,7 +1002,7 @@ export default function App() {
             </div>
           </dl>
           <button type="submit" disabled={isLoading} className="btn btn-primary w-full h-12 mt-6">
-            Registar e guardar <ArrowRight className="arrow w-4 h-4" />
+            Registrar e salvar <ArrowRight className="arrow w-4 h-4" />
           </button>
         </aside>
       </form>
@@ -1099,7 +1099,7 @@ export default function App() {
     };
 
     const deleteEval = async () => {
-      if(!window.confirm("Atenção: Tem a certeza que deseja APAGAR PERMANENTEMENTE esta avaliação?")) return;
+      if(!window.confirm("Atenção: Tem certeza que deseja EXCLUIR PERMANENTEMENTE esta avaliação?")) return;
       setIsLoading(true);
       try {
         await fetch(API_URL, {
@@ -1109,9 +1109,9 @@ export default function App() {
         
         setEvaluations(evaluations.filter(ev => ev.id !== selectedEval.id));
         setSelectedEval(null);
-        showToast('Avaliação eliminada com sucesso!');
+        showToast('Avaliação excluída com sucesso!');
       } catch (err) {
-        showToast('Erro ao apagar avaliação.', 'error');
+        showToast('Erro ao excluir avaliação.', 'error');
       } finally {
         setIsLoading(false);
       }
@@ -1120,11 +1120,11 @@ export default function App() {
     // FUNÇÃO PARA GERAR O PDF DO LAUDO PADRONIZADO
     const handlePrintReport = () => {
       const printWindow = window.open('', '', 'width=800,height=900');
-      const dateStr = new Date(selectedEval.date).toLocaleDateString('pt-PT');
+      const dateStr = new Date(selectedEval.date).toLocaleDateString('pt-BR');
       
       const html = `
         <!DOCTYPE html>
-        <html lang="pt">
+        <html lang="pt-BR">
           <head>
             <meta charset="UTF-8">
             <title>Laudo de Monitoria - ${selectedEval.agent}</title>
@@ -1199,7 +1199,7 @@ export default function App() {
 
             <div class="section">
               <div class="section-title">Feedback e Recomendações (PDI)</div>
-              <div class="feedback-box">${selectedEval.comments || 'Nenhuma observação registada pelo avaliador.'}</div>
+              <div class="feedback-box">${selectedEval.comments || 'Nenhuma observação registrada pelo avaliador.'}</div>
             </div>
 
             <div class="signatures">
@@ -1239,14 +1239,14 @@ export default function App() {
         <div className="panel overflow-hidden animate-rise flex flex-col">
           <div className="p-6 lg:px-7 flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <span className="idx">{displayData.length} {displayData.length === 1 ? 'registo' : 'registos'}</span>
+              <span className="idx">{displayData.length} {displayData.length === 1 ? 'registro' : 'registros'}</span>
               <h2 className="font-display text-[28px] leading-tight mt-1">
                 {user.role === 'Admin' ? <>Todas as <em>monitorias</em></> : <>O seu <em>histórico</em></>}
               </h2>
             </div>
             <div className="relative">
               <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-sub pointer-events-none" />
-              <input type="text" placeholder="Procurar operador ou feedback…" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="field pl-10 rounded-full w-full md:w-80" />
+              <input type="text" placeholder="Buscar operador ou feedback…" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="field pl-10 rounded-full w-full md:w-80" />
             </div>
           </div>
 
@@ -1276,7 +1276,7 @@ export default function App() {
                         </div>
                       </td>
                     )}
-                    <td className={`py-4 font-mono text-[13px] text-sub ${user.role === 'Admin' ? 'px-4' : 'px-7'}`}>{new Date(ev.date).toLocaleDateString('pt-PT')}</td>
+                    <td className={`py-4 font-mono text-[13px] text-sub ${user.role === 'Admin' ? 'px-4' : 'px-7'}`}>{new Date(ev.date).toLocaleDateString('pt-BR')}</td>
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-3">
                         <LedDot v={ev.total} />
@@ -1321,11 +1321,11 @@ export default function App() {
           <div className="fixed inset-0 bg-[#0b0a08]/55 backdrop-blur-[6px] z-50 flex items-end sm:items-center justify-center sm:p-6 animate-fade" onClick={() => setSelectedEval(null)}>
             <div className="panel w-full max-w-2xl overflow-hidden animate-sheet flex flex-col relative rounded-b-none sm:rounded-b-[14px] max-h-[92vh] shadow-[0_40px_80px_-20px_rgba(0,0,0,.5)]" onClick={e => e.stopPropagation()}>
 
-              {isLoading && <BusyOverlay title="A processar alterações no Google Drive…" className="" />}
+              {isLoading && <BusyOverlay title="Processando alterações no Google Drive…" className="" />}
 
               <div className="px-6 sm:px-7 pt-6 pb-5 border-b border-line flex justify-between items-start gap-4">
                 <div className="min-w-0">
-                  <span className="idx">{isEditing ? 'Modo de correção' : 'Avaliação'} · <span className="text-sub">{new Date(selectedEval.date).toLocaleDateString('pt-PT')}</span></span>
+                  <span className="idx">{isEditing ? 'Modo de correção' : 'Avaliação'} · <span className="text-sub">{new Date(selectedEval.date).toLocaleDateString('pt-BR')}</span></span>
                   <h2 className="font-display text-4xl leading-none tracking-tight mt-2 truncate">
                     {isEditing ? <>Corrigir <em>avaliação</em></> : selectedEval.agent}
                   </h2>
@@ -1343,7 +1343,7 @@ export default function App() {
                           <button onClick={startEdit} className="btn btn-icon" title="Corrigir notas, texto ou áudio">
                             <Edit3 className="w-4 h-4" />
                           </button>
-                          <button onClick={deleteEval} className="btn btn-icon is-danger" title="Apagar avaliação permanentemente">
+                          <button onClick={deleteEval} className="btn btn-icon is-danger" title="Excluir avaliação permanentemente">
                             <Trash2 className="w-4 h-4" />
                           </button>
                         </>
@@ -1400,7 +1400,7 @@ export default function App() {
                       <label className="group flex items-center gap-3 rounded-xl border border-dashed border-line hover:border-brand hover:bg-brand/[0.04] p-4 cursor-pointer transition-colors">
                         <input type="file" accept="audio/*" onChange={handleEditAudioUpload} className="sr-only" />
                         <Plus className="w-4 h-4 text-sub group-hover:text-brand" />
-                        <span className="text-sm font-medium text-ink">Anexar {removeAudio ? 'um novo' : 'um'} ficheiro de áudio</span>
+                        <span className="text-sm font-medium text-ink">Anexar {removeAudio ? 'um novo' : 'um'} arquivo de áudio</span>
                       </label>
                     )}
                   </div>
@@ -1415,7 +1415,7 @@ export default function App() {
                       Cancelar
                     </button>
                     <button type="submit" className="btn btn-ink">
-                      <Save className="w-4 h-4" /> Guardar correção
+                      <Save className="w-4 h-4" /> Salvar correção
                     </button>
                   </div>
                 </form>
@@ -1444,7 +1444,7 @@ export default function App() {
                       <MessageSquare className="w-3 h-3" /> Recomendações e observações (PDI)
                     </h4>
                     <p className="text-ink leading-relaxed text-[15px] whitespace-pre-wrap">
-                      {selectedEval.comments || "Nenhuma observação registada."}
+                      {selectedEval.comments || "Nenhuma observação registrada."}
                     </p>
                   </div>
 
@@ -1460,7 +1460,7 @@ export default function App() {
                         </div>
                         <div className="flex justify-end">
                           <a href={selectedEval.audioUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm">
-                            <Download className="w-4 h-4" /> Descarregar áudio
+                            <Download className="w-4 h-4" /> Baixar áudio
                           </a>
                         </div>
                       </div>
@@ -1500,21 +1500,21 @@ export default function App() {
         
         if (result.success) {
           setUsers([...users, userObj]);
-          showToast('Utilizador adicionado à base de dados!');
+          showToast('Usuário adicionado ao banco de dados!');
           setNewUser({ name: '', email: '', password: '', role: 'Operador' });
         } else {
-          showToast(`Erro na base de dados: ${result.error}`, 'error');
+          showToast(`Erro no banco de dados: ${result.error}`, 'error');
         }
       } catch (err) {
-        showToast('Erro ao criar utilizador na nuvem.', 'error');
+        showToast('Erro ao criar usuário na nuvem.', 'error');
       } finally {
         setIsLoading(false);
       }
     };
 
     const handleDeleteUser = async (userId, userName) => {
-      if (user.id === userId) return showToast('Você não pode excluir a sua própria conta!', 'error');
-      if (!window.confirm(`Tem certeza que deseja excluir o utilizador ${userName}?`)) return;
+      if (user.id === userId) return showToast('Você não pode excluir sua própria conta!', 'error');
+      if (!window.confirm(`Tem certeza que deseja excluir o usuário ${userName}?`)) return;
       
       setIsLoading(true);
       try {
@@ -1528,12 +1528,12 @@ export default function App() {
         
         if (result.success) {
           setUsers(users.filter(u => u.id !== userId));
-          showToast('Utilizador excluído com sucesso!');
+          showToast('Usuário excluído com sucesso!');
         } else {
           showToast(`Erro na exclusão: ${result.error || 'Ação não encontrada.'}`, 'error');
         }
       } catch (err) {
-        showToast('Erro de conexão ao excluir utilizador.', 'error');
+        showToast('Erro de conexão ao excluir usuário.', 'error');
       } finally {
         setIsLoading(false);
       }
@@ -1543,13 +1543,13 @@ export default function App() {
     return (
       <div className="grid grid-cols-1 lg:grid-cols-[340px,1fr] gap-5 items-start">
         <div className="panel p-6 lg:p-7 lg:sticky lg:top-32 relative animate-rise d1">
-          {isLoading && <BusyOverlay title="A sincronizar com a planilha…" />}
+          {isLoading && <BusyOverlay title="Sincronizando com a planilha…" />}
           <span className="idx flex items-center gap-1.5"><UserPlus className="w-3 h-3" /> 01 — Novo acesso</span>
           <h3 className="font-display text-[28px] leading-tight mt-1 mb-6">Adicionar <em>pessoa</em></h3>
           <form onSubmit={handleAddUser} className="space-y-4">
             <div><label className="field-label">Nome completo</label><input required type="text" value={newUser.name} onChange={e=>setNewUser({...newUser, name: e.target.value})} className="field" /></div>
             <div><label className="field-label">E-mail</label><input required type="email" value={newUser.email} onChange={e=>setNewUser({...newUser, email: e.target.value})} className="field" /></div>
-            <div><label className="field-label">Palavra-passe provisória</label><input required type="text" value={newUser.password} onChange={e=>setNewUser({...newUser, password: e.target.value})} className="field font-mono" /></div>
+            <div><label className="field-label">Senha provisória</label><input required type="text" value={newUser.password} onChange={e=>setNewUser({...newUser, password: e.target.value})} className="field font-mono" /></div>
             <div>
               <label className="field-label">Cargo</label>
               <div className="grid grid-cols-2 gap-1 p-1 rounded-full border border-line bg-surfaceMuted/60">
@@ -1573,7 +1573,7 @@ export default function App() {
         <div className="panel overflow-hidden animate-rise d2">
           <div className="p-6 lg:px-7">
             <span className="idx">02 — {users.length} {users.length === 1 ? 'pessoa' : 'pessoas'}</span>
-            <h3 className="font-display text-[28px] leading-tight mt-1">Equipa <em>registada</em></h3>
+            <h3 className="font-display text-[28px] leading-tight mt-1">Equipe <em>cadastrada</em></h3>
           </div>
           <ul className="divide-y divide-line border-t border-line">
             {users.map(u => (
@@ -1595,14 +1595,14 @@ export default function App() {
                   onClick={() => handleDeleteUser(u.id, u.name)}
                   disabled={isLoading || u.id === user.id}
                   className="btn btn-icon is-danger"
-                  title={u.id === user.id ? "Não pode excluir a si mesmo" : "Excluir utilizador"}
+                  title={u.id === user.id ? "Não pode excluir a si mesmo" : "Excluir usuário"}
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
               </li>
             ))}
             {users.length === 0 && (
-               <li className="py-12 text-center text-sub text-sm">Nenhum utilizador encontrado.</li>
+               <li className="py-12 text-center text-sub text-sm">Nenhum usuário encontrado.</li>
             )}
           </ul>
         </div>
@@ -1617,15 +1617,15 @@ export default function App() {
     { id: 'dashboard', label: 'Painel Geral', icon: LayoutDashboard },
     { id: 'new', label: 'Nova Avaliação', icon: Plus },
     { id: 'history', label: 'Histórico Global', icon: History },
-    { id: 'users', label: 'Gerir Utilizadores', icon: Users },
+    { id: 'users', label: 'Gerenciar Usuários', icon: Users },
   ] : [
-    { id: 'dashboard', label: 'O Meu Desempenho', icon: LayoutDashboard },
+    { id: 'dashboard', label: 'Meu Desempenho', icon: LayoutDashboard },
     { id: 'history', label: 'Minhas Avaliações', icon: History },
   ];
 
   const activeIndex = Math.max(0, menuItems.findIndex(i => i.id === currentView));
   const [titleHead, titleTail] = splitTitle(menuItems[activeIndex]?.label || currentView);
-  const todayLabel = new Date().toLocaleDateString('pt-PT', { weekday: 'long', day: 'numeric', month: 'long' });
+  const todayLabel = new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
 
   const goTo = (id) => {
     setCurrentView(id);
@@ -1714,7 +1714,7 @@ export default function App() {
               </span>
               <div>
                 <h4 className="font-semibold text-sm text-ink">Nova avaliação</h4>
-                <p className="text-xs text-sub">Tem {newEvalsCount} {newEvalsCount === 1 ? 'nova avaliação' : 'novas avaliações'} para ler.</p>
+                <p className="text-xs text-sub">Você tem {newEvalsCount} {newEvalsCount === 1 ? 'nova avaliação' : 'novas avaliações'} para ler.</p>
               </div>
               <button onClick={(e) => { e.stopPropagation(); markEvalsAsSeen(); }} className="btn btn-icon ml-1" title="Dispensar">
                 <X className="w-4 h-4" />
